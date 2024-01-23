@@ -1,0 +1,59 @@
+{%extends 'cakehouse/base.html'%}
+
+{%block body_block%}
+<div class="container mt-5">
+  <h1 class="text text-center mb-5">Cake Details</h1>
+  <div class="row">
+      <div class="col-4">
+          <div class="card" style="width:100%">
+              <img src="{{cake.image.url}}" class="card-img-top" alt="..." height="200px">
+              <div class="card-body">
+                <h5 class="card-title">{{cake.cake_name}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{cake.flavours}}</li>
+                <li class="list-group-item">{{cake.cat_name}}</li>
+              </ul>
+            </div>
+      </div>
+      <div class="col-8 border boredr-dark">
+         <table class="table table-striped">
+          <tr>
+              <td>Price</td>
+              <td>Weight</td>
+              <td>Cake_Type</td>
+              <td>Action</td>
+          </tr>
+          {%for v in cake.cakevarients_set.all%}
+              <tr>
+                  <td>{{v.cake_price}}</td>
+                  <td>{{v.weight}}</td>
+                  <td>{{v.cake_type}}</td>
+                  <td>
+                    <a href="{%url 'cake-varient-change' v.id%}" class="btn btn-success">edit</i></a>
+                    <a href="{%url 'cake-varient-remove' v.id%}" class="btn btn-danger">remove</a>
+                    <a href="{%url 'offers-add' v.id%}" class="btn btn-primary">offer</a>
+                  </td>
+              </tr>
+          {%endfor%}
+         </table>
+      </div>
+  </div>
+  <div class="row mt-3">
+    {%for v in cake.cakevarients_set.all%}
+      {%for o in v.cakeoffers_set.all%}
+        <div class="border border-dark p-3">
+          <div>
+            Weight {{o.cake_varient.weight}} | flavours  {{o.cake_varient.flavours}}
+          </div>
+          <div><span>offer price ${{o.discount_price}}</span></div>
+          <div>start_date:{{o.start_date}}</div>
+          <div>end_date:{{o.end_date}}</div>
+          <a href="{%url 'offer-remove' o.id%}" class="btn btn-danger">remove</a>
+        </div>
+      {%endfor%}
+    {%endfor%}
+  </div>
+</div>
+{%endblock%}
+

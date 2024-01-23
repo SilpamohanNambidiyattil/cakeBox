@@ -1,0 +1,80 @@
+1) Registration
+url:http://127.0.0.1:8000/api/register/
+method:post
+data:{"username","password","email","phone","address"}
+authorization:nill
+status:completed
+
+2) cake list api
+url:http://127.0.0.1:8000/api/cakes/
+method:get
+authorization:nill
+status:completed
+
+3) cake detail api
+url:http://127.0.0.1:8000/api/cakess/2/
+method:get
+status:completed
+
+4) add to cart api
+url:http://127.0.0.1:8000/api/cakes/{varient_id}/cart_add/
+method:post
+authorization:username,password
+body:nill
+
+5) carts list
+url:http://127.0.0.1:8000/api/carts/
+method:get
+authorization:username,password
+body:nill
+
+6) cart delete
+url:http://127.0.0.1:8000/api/carts/{cart-id}/
+method:delete
+authorization:username,password
+body:nill
+
+7) place order
+url:http://127.0.0.1:8000/api/cakes/{varient_id}/place_order/
+method:post
+authorization:username,password
+body:address
+
+8) order list
+url:http://127.0.0.1:8000/api/orders/
+method:get
+authorization:username,password
+body:nill
+
+9) order remove
+url:http://127.0.0.1:8000/api/orders/{order-id}/
+method:delete
+authorization:username,password
+body:nill
+
+10) obtain token
+url:http://127.0.0.1:8000/api/token/
+method:post
+body:username,password
+headers:nill
+
+11) Review add
+url:http://127.0.0.1:8000/api/cakes/{cakes_id}/add_review/
+method:post
+body:{rating,comment}
+headers:token
+
+12) Review list
+url:http://127.0.0.1:8000/api/review/
+method:get
+authorization:nill
+body:nill
+headers:token
+
+13) Remove Review
+url:http://127.0.0.1:8000/api/review/{review_id}/
+method:delete
+authorization:nill
+body:nill
+headers:token
+
